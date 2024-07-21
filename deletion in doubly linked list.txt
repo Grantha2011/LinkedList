@@ -16,9 +16,9 @@ class Node{
 
 void insertAtHead(int value, Node* &head, Node* &tail) {
   //2 cases -> LL is empty / non-empty
-  //empty wala case
+  
   if(head == NULL && tail == NULL) {
-    //iska mtlb, main firstb node create krne wala hu 
+    
     Node* newNode = new Node(value);
     head = newNode;
     tail= newNode;
@@ -85,7 +85,7 @@ int getLength(Node* &head) {
 }
 
 void insertAtPosition(int position,int value, Node* &head, Node* &tail) {
-  //3 cases -> leftmost end, rightmost end, middle me insert krna chahte ho
+ 
   int len = getLength(head);
   if(position == 1) {
     //insert leftmost me krna chahte h 
@@ -125,8 +125,7 @@ bool searchElement(Node* head, int target) {
     }
     temp = temp -> next;
   }
-  //agar yaha tk pahuch gye, iska mtlb
- // LL poori travel krli h and target nahi mila
+  
   return false;
 }
 
