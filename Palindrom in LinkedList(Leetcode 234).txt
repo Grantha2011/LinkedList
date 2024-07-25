@@ -1,0 +1,56 @@
+class Solution {
+public:
+    // Find the middle of the list
+    ListNode* middle(ListNode* head, ListNode*& middlenodeprev) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next->next;
+            middlenodeprev = slow;
+            slow = slow->next;
+        }
+        return slow;
+    }
+
+    // Reverse the list from the current node
+    ListNode* reverse(ListNode*& prev, ListNode*& curr) {
+        while (curr != NULL) {
+            ListNode* forward = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+        if (head == NULL || head->next == NULL) {
+            return true;
+        }
+
+        ListNode* firstHead = head;
+        ListNode* middlenodeprev = NULL;
+        ListNode* middlenode = middle(head, middlenodeprev);
+
+        // Split the list into two halves
+        middlenodeprev->next = NULL;
+        ListNode* prev = NULL;
+        ListNode* curr = middlenode;
+        ListNode* secondHead = reverse(prev, curr);
+
+        // Compare the two halves
+        ListNode* temp1 = firstHead;
+        ListNode* temp2 = secondHead;
+
+        while (temp1 != NULL && temp2 != NULL) {
+            if (temp1->val != temp2->val) {
+                return false;
+            }
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+
+        return true;
+    }
+};
