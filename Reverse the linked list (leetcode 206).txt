@@ -1,0 +1,18 @@
+class Solution {
+public:
+    ListNode* reverseListHelper(ListNode* &prev, ListNode* &curr) {
+        while (curr != NULL) {
+            ListNode* forward = curr->next;
+            curr->next = prev;  // Reverse the current node's pointer
+            prev = curr;        // Move prev to the current node
+            curr = forward;     // Move to the next node
+        }
+        return prev;
+    }
+
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        return reverseListHelper(prev, curr);
+    }
+};
